@@ -176,10 +176,7 @@ void Register() {
     users[name] = u;
     saveCredentialsToFile();
     cout << "Registration successful" << endl;
-    cout<<"if you want to login ->enter 1 else 0";
-    int l=0;cin>>l;
-    if(l==1)login();
-    else return;
+    
     cin.ignore();
     displayMainMenu();
    
