@@ -153,7 +153,7 @@ void login() {
     } else {
         cout << "Login failed" << endl;
     }
-    cin.ignore();
+    
     
     displayMainMenu();
 }
@@ -177,7 +177,7 @@ void Register() {
     saveCredentialsToFile();
     cout << "Registration successful" << endl;
     
-    cin.ignore();
+   
     displayMainMenu();
    
 }
