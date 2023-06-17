@@ -11,7 +11,7 @@ public:
     bool active;
     string color;
 };
-
+void displayMainMenu();
 unordered_map<string, details> users;
 const string credentialsFile = "credentials.txt";
 
@@ -115,22 +115,25 @@ void delete_blog(const details& user, const string& username) {
         cout << "Unable to open blog file.\n";
     }
 }
-
 void login() {
     string name;
     cout << "Enter your name: ";
     getline(cin, name);
+
     string pass;
     cout << "Enter your password: ";
     getline(cin, pass);
+
     if (users.find(name) != users.end() && users[name].password == pass) {
         cout << "Login successful" << endl;
         cout << "Press 1: Write a blog" << endl;
         cout << "Press 2: View all blogs" << endl;
         cout << "Press 3: Delete a blog" << endl;
         cout << "Press 4: Exit" << endl;
+
         int choice;
         cin >> choice;
+        
         switch (choice) {
             case 1:
                 write_blog(users[name], name);
@@ -150,7 +153,11 @@ void login() {
     } else {
         cout << "Login failed" << endl;
     }
+    cin.ignore();
+    
+    displayMainMenu();
 }
+
 
 void Register() {
     string name;
@@ -169,6 +176,13 @@ void Register() {
     users[name] = u;
     saveCredentialsToFile();
     cout << "Registration successful" << endl;
+    cout<<"if you want to login ->enter 1 else 0";
+    int l=0;cin>>l;
+    if(l==1)login();
+    else return;
+    cin.ignore();
+    displayMainMenu();
+   
 }
 
 void forgot() {
@@ -206,14 +220,13 @@ void forgot() {
         }
     }
 }
-
-int main() {
-    loadCredentialsFromFile();
+void displayMainMenu() {
+    
     cout << "----- Press 1: LOG IN" << endl;
     cout << "----- Press 2: REGISTER" << endl;
     cout << "----- Press 3: FORGOT PASSWORD" << endl;
     cout << "----- Press 4: EXIT" << endl;
-    int choice;
+     int choice;
     cin >> choice;
     cin.ignore();
     while (choice < 5) {
@@ -235,5 +248,11 @@ int main() {
                 break;
         }
     }
+    
+}
+int main() {
+    loadCredentialsFromFile();
+    displayMainMenu();
+   
     return 0;
 }
