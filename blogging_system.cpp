@@ -216,7 +216,7 @@ int main() {
     int choice;
     cin >> choice;
     cin.ignore();
-    while (choice < 1 || choice > 4) {
+    while (choice < 5) {
         switch (choice) {
             case 1:
                 login();
